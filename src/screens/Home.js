@@ -9,7 +9,7 @@ import {
 } from 'react-native'
 import { withNavigation } from 'react-navigation'
 import LinearGradient from 'react-native-linear-gradient'
-import config from '../config/index'
+import config from '../config'
 import { MainTemplate } from '../presentation'
 
 class Home extends Component {

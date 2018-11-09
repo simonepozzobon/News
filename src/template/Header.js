@@ -6,7 +6,7 @@ import {
   View,
 } from 'react-native'
 import { withNavigation } from 'react-navigation'
-import config from '../config/index'
+import config from '../config'
 
 class Header extends Component {
   constructor() {

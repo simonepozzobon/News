@@ -10,7 +10,7 @@ import {
 } from 'react-native'
 import { withNavigation } from 'react-navigation'
 import { MainTemplate } from '../presentation'
-import config from '../config/index'
+import config from '../config'
 
 class Login extends Component {
   constructor() {
@@ -142,11 +142,11 @@ const styles = StyleSheet.create({
     height: 44,
     borderRadius: 22,
     borderWidth: 2,
-    borderColor: '#F07879',
+    borderColor: config.colors.primary,
   },
 
   btnPrimaryText: {
-    color: '#F07879',
+    color: config.colors.primary,
   },
 
   btnGray: {
@@ -157,11 +157,11 @@ const styles = StyleSheet.create({
     height: 44,
     borderRadius: 22,
     borderWidth: 2,
-    borderColor: '#7F7F7F',
+    borderColor: config.colors.gray,
   },
 
   btnGrayText: {
-    color: '#7F7F7F',
+    color: config.colors.gray,
   }
 })
 
