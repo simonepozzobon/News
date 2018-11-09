@@ -21,7 +21,7 @@ export default {
     blue: '#D2ECFB',
     purple: '#CEBCDD',
     pink: '#F6B498',
-    gray: '#F7F7F7',
+    gray: '#7F7F7F',
   },
 
   // Styles constants
