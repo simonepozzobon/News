@@ -7,11 +7,10 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native'
+import { withNavigation } from 'react-navigation'
 import LinearGradient from 'react-native-linear-gradient'
 import config from '../config/index'
-import {
-  MainTemplate,
-} from '../presentation'
+import { MainTemplate } from '../presentation'
 
 class Home extends Component {
   constructor() {
@@ -27,8 +26,8 @@ class Home extends Component {
   }
 
   // Methods
-  goTo(page) {
-    console.log('change page', page)
+  goTo(route) {
+    this.props.navigation.navigate(route)
   }
 
   // Render
@@ -51,44 +50,24 @@ class Home extends Component {
 
     // Component
     return (
-      <LinearGradient colors={['#D2ECFB', '#F9F2A8']} style={styles.background}>
-        <View style={styles.container}>
-          <View style={styles.content}>
-            <TouchableOpacity activeOpacity={itemOpacity} onPress={() => {this.goTo('its-monday')}}>
-              <Image source={config.images.itsMonday} style={compStyles.menuItem}></Image>
-            </TouchableOpacity>
-            <TouchableOpacity activeOpacity={itemOpacity} onPress={() => {this.goTo('its-friday')}}>
-              <Image source={config.images.itsFriday} style={compStyles.menuItem}></Image>
-            </TouchableOpacity>
-          </View>
-          <View style={styles.footer}>
-            <TouchableOpacity activeOpacity={itemOpacity} onPress={() => {this.goTo('hit-parade')}}>
-              <Image source={config.images.hitParade} style={compStyles.smallMenuItem}></Image>
-            </TouchableOpacity>
-          </View>
+      <MainTemplate>
+        <TouchableOpacity activeOpacity={itemOpacity} onPress={() => {this.goTo('itsMonday')}}>
+          <Image source={config.images.itsMonday} style={compStyles.menuItem}></Image>
+        </TouchableOpacity>
+        <TouchableOpacity activeOpacity={itemOpacity} onPress={() => {this.goTo('itsFriday')}}>
+          <Image source={config.images.itsFriday} style={compStyles.menuItem}></Image>
+        </TouchableOpacity>
+        <View style={styles.footer}>
+          <TouchableOpacity activeOpacity={itemOpacity} onPress={() => {this.goTo('hitParade')}}>
+            <Image source={config.images.hitParade} style={compStyles.smallMenuItem}></Image>
+          </TouchableOpacity>
         </View>
-      </LinearGradient>
+      </MainTemplate>
     );
   }
 }
 
 const styles = StyleSheet.create({
-  // Main Styles
-  background: {
-    flex: 12,
-  },
-  container: {
-    flex: 12,
-    alignItems: 'center',
-  },
-
-  // Content
-  content: {
-    flex: 9,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-
   // Footer
   footer: {
     flex: 2,
@@ -100,4 +79,4 @@ const styles = StyleSheet.create({
 
 })
 
-export default Home;
+export default withNavigation(Home);

@@ -3,10 +3,13 @@ import {
   StyleSheet,
 } from 'react-native'
 import { SwitchNavigator, TabNavigator } from 'react-navigation'
-import { Home, PostList } from './screens'
+import { HitParade, Home, ItsFriday, ItsMonday } from './screens'
 
 const MainStack = SwitchNavigator({
+  hitParade: HitParade,
   home: Home,
+  itsFriday: ItsFriday,
+  itsMonday: ItsMonday
 })
 
 class ShortologyNews extends Component {

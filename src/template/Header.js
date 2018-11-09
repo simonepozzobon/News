@@ -5,6 +5,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native'
+import { withNavigation } from 'react-navigation'
 import config from '../config/index'
 
 class Header extends Component {
@@ -19,7 +20,9 @@ class Header extends Component {
   }
 
   // Methods
-  method() {}
+  goTo(route) {
+    this.props.navigation.navigate('home')
+  }
 
   // Render
   render() {
@@ -34,7 +37,7 @@ class Header extends Component {
         <TouchableOpacity activeOpacity={itemOpacity} onPress={() => {this.goTo('home')}}>
           <Image source={config.images.logo}  style={styles.headerImage}></Image>
         </TouchableOpacity>
-        <TouchableOpacity activeOpacity={itemOpacity} onPress={() => {this.goTo('profile')}}>
+        <TouchableOpacity activeOpacity={itemOpacity} onPress={() => {this.goTo('home')}}>
           <Image source={config.images.defaultAvatar}  style={styles.headerImage}></Image>
         </TouchableOpacity>
       </View>
@@ -59,4 +62,4 @@ const styles = StyleSheet.create({
   },
 })
 
-export default Header;
+export default withNavigation(Header);
