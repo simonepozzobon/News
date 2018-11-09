@@ -24,6 +24,8 @@ export default {
     gray: '#7F7F7F',
   },
 
+  gridColumns: 3,
+
   // Styles constants
   styleConst: {
     bgBlue: {},

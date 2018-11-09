@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native'
+import { withNavigation } from 'react-navigation'
 
 class PostItem extends Component {
   constructor() {
@@ -20,6 +21,15 @@ class PostItem extends Component {
   }
 
   // Methods
+  goTo() {
+    if (this.props.post.slug && this.props.post.slug.slug) {
+      this.props.navigation.navigate('singlePost', {
+        slug: this.props.post.slug.slug
+      })
+    } else {
+      console.log('il post non ha uno slug')
+    }
+  }
 
   // Render
   render() {
@@ -27,8 +37,16 @@ class PostItem extends Component {
     const compStyles = StyleSheet.create({})
 
     // Component
+    if (this.props.post.empty) {
+      // render empty object
+      return <View style={styles.postSingle}/>
+    }
+
     return (
-      <TouchableOpacity style={styles.postSingle}>
+      <TouchableOpacity
+        onPress={() => {this.goTo()}}
+        style={styles.postSingle}
+      >
         <Image
           source={{uri: this.props.post.img}}
           style={{ flex: 1, alignSelf: 'stretch' }}
@@ -42,7 +60,6 @@ class PostItem extends Component {
 const styles = StyleSheet.create({
   postSingle: {
     minWidth: 50,
-    backgroundColor: 'white',
     alignItems: 'center',
     justifyContent: 'center',
     flex: 1,
@@ -52,4 +69,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default PostItem;
+export default withNavigation(PostItem);

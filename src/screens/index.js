@@ -4,6 +4,7 @@ import ItsFriday from './ItsFriday'
 import ItsMonday from './ItsMonday'
 import Login from './Login'
 import Register from './Register'
+import SinglePost from './SinglePost'
 
 export {
   HitParade,
@@ -12,4 +13,5 @@ export {
   ItsMonday,
   Login,
   Register,
+  SinglePost,
 }

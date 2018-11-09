@@ -30,7 +30,6 @@ class ItsMonday extends Component {
           isLoading: false,
           posts: responseJson
         })
-        console.log(responseJson)
       })
       .catch((error) => {
         console.log(error)
