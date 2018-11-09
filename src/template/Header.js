@@ -21,7 +21,7 @@ class Header extends Component {
 
   // Methods
   goTo(route) {
-    this.props.navigation.navigate('home')
+    this.props.navigation.navigate(route)
   }
 
   // Render
@@ -37,7 +37,7 @@ class Header extends Component {
         <TouchableOpacity activeOpacity={itemOpacity} onPress={() => {this.goTo('home')}}>
           <Image source={config.images.logo}  style={styles.headerImage}></Image>
         </TouchableOpacity>
-        <TouchableOpacity activeOpacity={itemOpacity} onPress={() => {this.goTo('home')}}>
+        <TouchableOpacity activeOpacity={itemOpacity} onPress={() => {this.goTo('login')}}>
           <Image source={config.images.defaultAvatar}  style={styles.headerImage}></Image>
         </TouchableOpacity>
       </View>

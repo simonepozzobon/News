@@ -8,6 +8,9 @@ export default {
     itsMonday: require('../../assets/home/its-monday.png'),
     itsFriday: require('../../assets/home/its-friday.png'),
     hitParade: require('../../assets/home/hit-parade.png'),
+
+    // Auth
+    loginAuth: require('../../assets/auth/login.png'),
   },
 
   // Styles constants

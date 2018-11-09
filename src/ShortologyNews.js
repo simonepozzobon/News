@@ -2,14 +2,29 @@ import React, { Component } from 'react'
 import {
   StyleSheet,
 } from 'react-native'
-import { SwitchNavigator, TabNavigator } from 'react-navigation'
-import { HitParade, Home, ItsFriday, ItsMonday } from './screens'
 
-const MainStack = SwitchNavigator({
-  hitParade: HitParade,
+import { createSwitchNavigator } from 'react-navigation'
+
+// Screens
+import {
+  HitParade,
+  Home,
+  ItsFriday,
+  ItsMonday,
+  Login
+} from './screens'
+
+// Navigation - Router
+const MainStack = createSwitchNavigator({
+  login: Login,
   home: Home,
+
+  // Post
+  itsMonday: ItsMonday,
   itsFriday: ItsFriday,
-  itsMonday: ItsMonday
+  hitParade: HitParade,
+
+  // Auth
 })
 
 class ShortologyNews extends Component {

@@ -29,7 +29,7 @@ class HitParade extends Component {
     return (
       <MainTemplate>
         <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-          <Text style={{fontSize: 20}}>It's Friday</Text>
+          <Text style={{fontSize: 20}}>Hit Parade</Text>
         </View>
       </MainTemplate>
     );
