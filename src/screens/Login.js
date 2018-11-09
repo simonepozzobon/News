@@ -61,7 +61,9 @@ class Login extends Component {
 
     // Component
     return (
-      <MainTemplate>
+      <MainTemplate
+        title="Login"
+      >
         <View style={styles.content}>
           <Image source={config.images.loginAuth} style={compStyles.image}></Image>
           <View style={styles.formInput}>

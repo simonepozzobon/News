@@ -13,6 +13,10 @@ import config from '../config'
 import { MainTemplate } from '../presentation'
 
 class Home extends Component {
+  static navigationOptions = {
+    title: 'Welcome to the app!',
+  };
+
   constructor() {
     super()
     this.state = {

@@ -27,7 +27,10 @@ class HitParade extends Component {
 
     // Component
     return (
-      <MainTemplate>
+      <MainTemplate
+        color={2}
+        title="Hit Parade"
+      >
         <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
           <Text style={{fontSize: 20}}>Hit Parade</Text>
         </View>

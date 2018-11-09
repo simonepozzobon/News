@@ -32,7 +32,10 @@ class MainTemplate extends Component {
       return (
         <LinearGradient colors={[config.colors.purple, config.colors.pink]} style={styles.background}>
           <View style={styles.container}>
-            <Header style={styles.header}></Header>
+            <Header
+              title={this.props.title}
+              style={styles.header}
+            />
             <View style={styles.content}>
               {this.props.children}
             </View>
@@ -44,7 +47,10 @@ class MainTemplate extends Component {
     return (
       <LinearGradient colors={[config.colors.blue, config.colors.yellow]} style={styles.background}>
         <View style={styles.container}>
-          <Header style={styles.header}></Header>
+          <Header
+            title={this.props.title}
+            style={styles.header}
+          />
           <View style={styles.content}>
             {this.props.children}
           </View>

@@ -51,7 +51,9 @@ class Register extends Component {
 
     // Component
     return (
-      <MainTemplate>
+      <MainTemplate
+        title="Register"
+      >
         <View style={styles.content}>
           <View style={styles.formInput}>
             <Text style={styles.inputLabel}>Name</Text>

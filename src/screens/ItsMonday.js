@@ -47,7 +47,10 @@ class ItsMonday extends Component {
     // Component
     if (this.state.isLoading) {
       return (
-        <MainTemplate color={2}>
+        <MainTemplate
+          color={2}
+          title="It's Monday"
+        >
           <View style={{flex: 8, justifyContent: 'center', alignItems: 'center'}}>
             <ActivityIndicator
               size="large"
@@ -60,7 +63,10 @@ class ItsMonday extends Component {
     }
 
     return (
-      <MainTemplate color={2}>
+      <MainTemplate
+        color={2}
+        title="It's Monday"
+      >
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', minWidth: 100+'%' }}>
           <PostsGrid
             posts={this.state.posts}

@@ -17,16 +17,30 @@ import {
 
 // Navigation - Router
 const MainStack = createSwitchNavigator({
-  itsMonday: ItsMonday,
-  home: Home,
+  home: {
+    screen: Home,
+  },
 
-  // Post
-  itsFriday: ItsFriday,
-  hitParade: HitParade,
+  // Post Lists
+  itsFriday: {
+    screen: ItsFriday,
+  },
+  itsMonday: {
+    screen: ItsMonday,
+  },
+  hitParade: {
+    screen: HitParade,
+  },
 
   // Auth
-  login: Login,
-  register: Register,
+  login: {
+    screen: Login,
+  },
+  register: {
+    screen: Register,
+  },
+}, {
+  initialRouteName: 'home'
 })
 
 class ShortologyNews extends Component {
