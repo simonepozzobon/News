@@ -82,11 +82,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
 
-  // Header
-  header: {
-    flex: 1,
-  },
-
   // Content
   content: {
     flex: 9,

@@ -4,7 +4,8 @@ import {
   Text,
 } from 'react-native'
 import LinearGradient from 'react-native-linear-gradient'
-import { Header } from './index'
+import { Header } from '../template'
+
 
 class MainTemplate extends Component {
   constructor() {
@@ -28,9 +29,7 @@ class MainTemplate extends Component {
     return (
       <LinearGradient colors={['#D2ECFB', '#F9F2A8']} style={styles.background}>
         <View style={styles.container}>
-          // Header
           <Header style={styles.header}></Header>
-          // Content
           {this.props.children}
         </View>
       </LinearGradient>
