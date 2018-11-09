@@ -12,11 +12,12 @@ import { withNavigation } from 'react-navigation'
 import { MainTemplate } from '../presentation'
 import config from '../config/index'
 
-class Login extends Component {
+class Register extends Component {
   constructor() {
     super()
     this.state = {
       screenWidth: 0,
+      name: '',
       email: '',
       password: '',
     }
@@ -32,30 +33,19 @@ class Login extends Component {
     this.props.navigation.navigate(route)
   }
 
-  getMail() {}
-
-  getPassword() {}
-
-  attemptLogin() {
-    alert('attempt Login')
+  register() {
+    alert('attempt Register')
   }
 
   // Render
   render() {
-    const lg = Math.floor(this.state.screenWidth / 1.5)
-    const md = Math.floor(this.state.screenWidth / 2)
+    const width = Math.floor(this.state.screenWidth / 1.5)
 
     // Dynamic styles
     const compStyles = StyleSheet.create({
-      image: {
-        width: md,
-        height: md,
-        marginBottom: 20,
-      },
-
       formInput: {
-        width: lg,
-        height: lg,
+        width: width,
+        height: width,
       }
     })
 
@@ -63,12 +53,20 @@ class Login extends Component {
     return (
       <MainTemplate>
         <View style={styles.content}>
-          <Image source={config.images.loginAuth} style={compStyles.image}></Image>
+          <View style={styles.formInput}>
+            <Text style={styles.inputLabel}>Name</Text>
+            <TextInput
+              value={this.state.name}
+              onChangeText={() => {}}
+              placeholder="Your Name"
+              style={[compStyles.formInput, styles.input]}
+            />
+          </View>
           <View style={styles.formInput}>
             <Text style={styles.inputLabel}>E-Mail</Text>
             <TextInput
               autoCorrect={false}
-              value={this.state.password}
+              value={this.state.email}
               onChangeText={() => {}}
               placeholder="email@domain.com"
               style={[compStyles.formInput, styles.input]}
@@ -77,22 +75,22 @@ class Login extends Component {
           <View style={styles.formInput}>
             <Text style={styles.inputLabel}>Password</Text>
             <TextInput
-              secureTextEntry
               autoCorrect={false}
               value={this.state.password}
-              onChangeText={() => {}} autoFocus={true}
+              secureTextEntry
+              onChangeText={() => {}}
               placeholder="password"
               style={[compStyles.formInput, styles.input]}
             />
           </View>
-          <TouchableOpacity style={styles.btnPrimary} onPress={() => {this.attemptLogin()}}>
-            <Text style={styles.btnPrimaryText}>Login</Text>
+          <TouchableOpacity style={styles.btnPrimary} onPress={() => {this.register()}}>
+            <Text style={styles.btnPrimaryText}>Register</Text>
           </TouchableOpacity>
         </View>
         <View style={styles.footer}>
-          <Text>Not registered yet?</Text>
-          <TouchableOpacity style={styles.btnGray} onPress={() => {this.goTo('register')}}>
-            <Text style={styles.btnGrayText}>Register</Text>
+          <Text>Already registered?</Text>
+          <TouchableOpacity style={styles.btnGray} onPress={() => {this.goTo('login')}}>
+            <Text style={styles.btnGrayText}>Login</Text>
           </TouchableOpacity>
         </View>
       </MainTemplate>
@@ -165,4 +163,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default withNavigation(Login);
+export default withNavigation(Register);

@@ -11,20 +11,22 @@ import {
   Home,
   ItsFriday,
   ItsMonday,
-  Login
+  Login,
+  Register,
 } from './screens'
 
 // Navigation - Router
 const MainStack = createSwitchNavigator({
-  login: Login,
+  itsMonday: ItsMonday,
   home: Home,
 
   // Post
-  itsMonday: ItsMonday,
   itsFriday: ItsFriday,
   hitParade: HitParade,
 
   // Auth
+  login: Login,
+  register: Register,
 })
 
 class ShortologyNews extends Component {
