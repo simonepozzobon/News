@@ -1,4 +1,5 @@
 export default {
+  // Images
   images: {
     // Commons
     logo: require('../../assets/commons/logo.png'),
@@ -11,6 +12,16 @@ export default {
 
     // Auth
     loginAuth: require('../../assets/auth/login.png'),
+  },
+
+  // Colors
+  colors: {
+    primary: '#F07879',
+    yellow: '#F9F2A8',
+    blue: '#D2ECFB',
+    purple: '#CEBCDD',
+    pink: '#F6B498',
+    gray: '#F7F7F7',
   },
 
   // Styles constants
