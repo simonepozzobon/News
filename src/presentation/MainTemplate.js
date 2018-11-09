@@ -6,6 +6,7 @@ import {
 } from 'react-native'
 import LinearGradient from 'react-native-linear-gradient'
 import { Header } from '../template'
+import config from '../config'
 
 
 class MainTemplate extends Component {
@@ -27,8 +28,21 @@ class MainTemplate extends Component {
     const compStyles = StyleSheet.create({})
 
     // Component
+    if (this.props.color == 2) {
+      return (
+        <LinearGradient colors={[config.colors.purple, config.colors.pink]} style={styles.background}>
+          <View style={styles.container}>
+            <Header style={styles.header}></Header>
+            <View style={styles.content}>
+              {this.props.children}
+            </View>
+          </View>
+        </LinearGradient>
+      );
+    }
+
     return (
-      <LinearGradient colors={['#D2ECFB', '#F9F2A8']} style={styles.background}>
+      <LinearGradient colors={[config.colors.blue, config.colors.yellow]} style={styles.background}>
         <View style={styles.container}>
           <Header style={styles.header}></Header>
           <View style={styles.content}>
