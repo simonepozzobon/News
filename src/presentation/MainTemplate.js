@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import {
+  ScrollView,
   StyleSheet,
   Text,
   View,
@@ -31,30 +32,32 @@ class MainTemplate extends Component {
     if (this.props.color == 2) {
       return (
         <LinearGradient colors={[config.colors.purple, config.colors.pink]} style={styles.background}>
-          <View style={styles.container}>
+          <View style={styles.header}>
             <Header
               title={this.props.title}
-              style={styles.header}
             />
+          </View>
+          <ScrollView contentContainerStyle={styles.container}>
             <View style={styles.content}>
               {this.props.children}
             </View>
-          </View>
+          </ScrollView>
         </LinearGradient>
       );
     }
 
     return (
       <LinearGradient colors={[config.colors.blue, config.colors.yellow]} style={styles.background}>
-        <View style={styles.container}>
+        <View style={styles.header}>
           <Header
             title={this.props.title}
-            style={styles.header}
           />
+        </View>
+        <ScrollView contentContainerStyle={styles.container}>
           <View style={styles.content}>
             {this.props.children}
           </View>
-        </View>
+        </ScrollView>
       </LinearGradient>
     );
   }
@@ -64,16 +67,19 @@ const styles = StyleSheet.create({
   background: {
     flex: 12,
   },
-  container: {
-    flex: 12,
-    alignItems: 'center',
-    width: 100+'%',
-  },
   content: {
-    flex: 9,
+    paddingTop: 8,
     justifyContent: 'center',
     alignItems: 'center',
   },
+
+  header: {
+    shadowColor: config.colors.black,
+    shadowOffset: {width: 1, height: 4},
+    shadowOpacity: 0.01,
+    shadowRadius: 1,
+    zIndex: 2,
+  }
 })
 
 export default MainTemplate;

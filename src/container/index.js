@@ -1,5 +1,7 @@
+import CommentsList from './CommentsList'
 import PostsGrid from './PostsGrid'
 
 export {
-  PostsGrid
+  CommentsList,
+  PostsGrid,
 }

@@ -28,7 +28,7 @@ class PostsGrid extends Component {
   constructor() {
     super()
     this.state = {
-      posts: []
+      posts: [],
     }
   }
 
@@ -46,7 +46,7 @@ class PostsGrid extends Component {
   }
 
   _renderPost(data) {
-    return <PostItem post={data.item}/>
+    return <PostItem post={data.item} />
   }
 
   // Render

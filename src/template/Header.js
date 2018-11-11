@@ -61,16 +61,19 @@ class Header extends Component {
 
 const styles = StyleSheet.create({
   header: {
-    flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    width: 100+'%',
-    padding: 20,
+    alignSelf: 'stretch',
+    paddingHorizontal: 10,
+    backgroundColor: 'rgba(255, 255, 255, 0.33)',
   },
+
   title: {
-    marginTop: 31,
-    fontSize: 21,
+    fontFamily: 'Montserrat',
+    fontWeight: 'bold',
+    marginTop: 35,
+    fontSize: 18,
   },
   headerImage: {
     marginTop: 35,
