@@ -4,6 +4,8 @@ export default {
     path: 'http://shortologynew.test:89/api'
   },
 
+  website: 'http://shortologynew.test:89/',
+
 
   // Images
   images: {

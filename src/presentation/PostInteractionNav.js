@@ -29,10 +29,13 @@ class PostInteractionNav extends Component {
 
   // Methods
   likePost = () => {
-    fetch('')
+    fetch(config.api.path + '/app/' + this.props.id + '/like-it')
       .then(response => response.json())
       .then(responseJson => {
-
+        console.log(responseJson)
+        if (responseJson.success) {
+          this.setState({ likeCount: responseJson.counts })
+        }
       })
       .catch(err => {
         console.log(err)
@@ -41,9 +44,9 @@ class PostInteractionNav extends Component {
 
   sharePost = () => {
     const shareOptions = {
-      title: 'Share via',
-      message: 'Test',
-      url: 'http://google.com'
+      title: 'Shortology',
+      message: this.props.title,
+      url: config.website + this.props.slug
     }
 
     Share.open(shareOptions)

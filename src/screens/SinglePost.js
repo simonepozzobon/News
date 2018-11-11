@@ -48,7 +48,7 @@ class SinglePost extends Component {
         this.setState({
           isLoading: false,
           post: responseJson,
-          likeCount: responseJson.likes ? responseJson.likes : 0,
+          likeCount: responseJson.likes ? responseJson.likes.count : 0,
           commentCount: responseJson.comments ? responseJson.comments.length : 0
         })
       })
@@ -109,13 +109,18 @@ class SinglePost extends Component {
             resizeMode="contain"
           />
         </View>
-
         <PostInteractionNav
+          id={this.state.post.id}
+          title={this.state.post.title}
+          slug={this.state.post.slug.slug}
           likeCount={this.state.likeCount}
           commentCount={this.state.commentCount}
           focusComment={this.focusComment}
         />
-        <CommentsList comments={this.state.post.comments} focusComment={this.focusComment} />
+        <CommentsList
+          comments={this.state.post.comments}
+          focusComment={this.focusComment}
+        />
         <CommentArea ref={x => this.CommentArea = x} />
 
       </MainTemplate>
