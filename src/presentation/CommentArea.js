@@ -5,19 +5,56 @@ import {
   TextInput,
   View,
 } from 'react-native'
+import axios from 'axios'
+import config from '../config'
 
 class CommentArea extends Component {
     constructor(props) {
       super(props)
       this.state = {
         replyTo: null,
+        author_id: 14, // per debug impostato sul mio
+        comment: '',
       }
+    }
+
+    model = () => {
+      if (!this.state.replyTo) {
+        return  'App\\Post'
+      }
+      return 'App\\Comment'
+    }
+
+    commentableId = () => {
+      if (!this.state.replyTo) {
+        return this.props.id
+      }
+      return this.state.replyTo
     }
 
     focus(id = null) {
       this.input.focus()
       this.state.replyTo = id ? id : null
-      console.log(id)
+    }
+
+    setComment = (comment) => {
+      this.setState({comment: comment})
+    }
+
+    sendComment = (key) => {
+      let data = new FormData()
+      data.append('comment', this.state.comment)
+      data.append('author_id', this.state.author_id)
+      data.append('model', this.model())
+      data.append('id', this.commentableId())
+
+      axios.post(config.api.path + '/app/comments/create', data)
+        .then(response => {
+          console.log(response)
+        })
+        .catch(err => {
+          console.log(err)
+        })
     }
 
     render() {
@@ -38,11 +75,13 @@ class CommentArea extends Component {
           <TextInput
             ref={ref => this.input = ref}
             placeholder="Write your comment.."
+            style={{ minHeight: 44 }}
             multiline={true}
             maxLength={510}
-            style={{ minHeight: 44 }}
+            blurOnSubmit={true}
             returnKeyType="send"
-            onFocus={() => {}}
+            onChangeText={this.setComment}
+            onSubmitEditing={this.sendComment}
           />
         </View>
       )

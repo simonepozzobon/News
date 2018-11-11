@@ -20,8 +20,9 @@ import {
 import { withNavigation } from 'react-navigation'
 import Video from 'react-native-video'
 import { CommentsList } from '../container'
-import { Comments } from '../dummies'
 import config from '../config'
+
+// import { Comments } from '../dummies'
 
 class SinglePost extends Component {
   constructor(props) {
@@ -32,7 +33,7 @@ class SinglePost extends Component {
       likeCount: 0,
       commentCount: 0,
       screenWidth: Dimensions.get('window').width,
-      fakeComments: Comments
+      // fakeComments: Comments
     }
   }
 
@@ -45,11 +46,13 @@ class SinglePost extends Component {
       .then(response => response.json())
       .then(responseJson => {
         console.log(responseJson)
+        let commentCount = responseJson.comments ? responseJson.comments.length : 0
+
         this.setState({
           isLoading: false,
           post: responseJson,
           likeCount: responseJson.likes ? responseJson.likes.count : 0,
-          commentCount: responseJson.comments ? responseJson.comments.length : 0
+          commentCount: commentCount
         })
       })
       .catch((error) => {
@@ -121,7 +124,10 @@ class SinglePost extends Component {
           comments={this.state.post.comments}
           focusComment={this.focusComment}
         />
-        <CommentArea ref={x => this.CommentArea = x} />
+        <CommentArea
+          id={this.state.post.id}
+          ref={x => this.CommentArea = x}
+        />
 
       </MainTemplate>
     );
