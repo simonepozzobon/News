@@ -1,4 +1,10 @@
 export default {
+  // api
+  api: {
+    path: 'http://shortologynew.test:89/api'
+  },
+
+
   // Images
   images: {
     // Commons

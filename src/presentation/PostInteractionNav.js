@@ -10,8 +10,8 @@ import Share from 'react-native-share'
 import config from '../config'
 
 class PostInteractionNav extends Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.state = {
       likeCount: 0,
       commentCount: 0,
@@ -29,11 +29,14 @@ class PostInteractionNav extends Component {
 
   // Methods
   likePost = () => {
-    alert('cuore')
-  }
+    fetch('')
+      .then(response => response.json())
+      .then(responseJson => {
 
-  commentPost = () => {
-    alert('commenta')
+      })
+      .catch(err => {
+        console.log(err)
+      })
   }
 
   sharePost = () => {
@@ -73,7 +76,7 @@ class PostInteractionNav extends Component {
 
         <TouchableOpacity
           style={styles.btnImage}
-          onPress={this.commentPost}
+          onPress={this.props.focusComment}
         >
           <Image
             source={config.icons.comment}

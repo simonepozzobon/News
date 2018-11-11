@@ -6,20 +6,26 @@ import {
   Image,
   StyleSheet,
   Text,
+  TextInput,
   TouchableOpacity,
   View,
 } from 'react-native'
-import Video from 'react-native-video'
+
+import {
+  CommentArea,
+  MainTemplate,
+  PostInteractionNav
+} from '../presentation'
+
 import { withNavigation } from 'react-navigation'
-import { MainTemplate, PostInteractionNav } from '../presentation'
+import Video from 'react-native-video'
 import { CommentsList } from '../container'
+import { Comments } from '../dummies'
 import config from '../config'
 
-import { Comments } from '../dummies'
-
 class SinglePost extends Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.state = {
       isLoading: true,
       post: {},
@@ -35,7 +41,7 @@ class SinglePost extends Component {
 
   componentDidMount() {
     // return fetch('http://shortology.it/api/app/single-post/'+this.props.navigation.state.params.slug)
-    return fetch('http://shortology.it/api/app/single-post/ghost')
+    return fetch(config.api.path + '/app/single-post/ghost')
       .then(response => response.json())
       .then(responseJson => {
         console.log(responseJson)
@@ -52,6 +58,13 @@ class SinglePost extends Component {
   }
 
   // Methods
+  focusComment = (id = null) => {
+    if (id) {
+      this.CommentArea.focus(id)
+    } else {
+      this.CommentArea.focus()
+    }
+  }
 
   // Render
   render() {
@@ -82,25 +95,14 @@ class SinglePost extends Component {
       )
     }
 
-    // if (this.state.post.isvideo) {
-    //   return (
-    //     <MainTemplate
-    //       color={2}
-    //       title=""
-    //     >
-    //       <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-    //         <Text>Video</Text>
-    //       </View>
-    //     </MainTemplate>
-    //   )
-    // }
+    // if (this.state.post.isvideo) {}
 
     return (
       <MainTemplate
         color={2}
         title="It's Monday"
       >
-        <View style={[styles.imgContainer, styles.shadows]}>
+        <View style={[styles.imgContainer]}>
           <Image
             source={{ uri: this.state.post.full_img }}
             style={compStyles.postImage}
@@ -108,11 +110,14 @@ class SinglePost extends Component {
           />
         </View>
 
-        <PostInteractionNav likeCount={this.state.likeCount} commentCount={this.state.commentCount}/>
-        <CommentsList comments={this.state.fakeComments}/>
+        <PostInteractionNav
+          likeCount={this.state.likeCount}
+          commentCount={this.state.commentCount}
+          focusComment={this.focusComment}
+        />
+        <CommentsList comments={this.state.post.comments} focusComment={this.focusComment} />
+        <CommentArea ref={x => this.CommentArea = x} />
 
-        <View style={styles.commentList}>
-        </View>
       </MainTemplate>
     );
   }
@@ -122,19 +127,12 @@ const styles = StyleSheet.create({
   imgContainer: {
     alignItems: 'center',
     marginHorizontal: 4,
-  },
-
-  commentList: {
-    alignSelf: 'stretch',
-    marginHorizontal: 4,
-  },
-
-  shadows: {
+    backgroundColor: 'white',
     shadowColor: config.colors.black,
     shadowOffset: {width: 2, height: 4},
     shadowOpacity: 0.05,
     shadowRadius: 4,
-  }
+  },
 })
 
 export default withNavigation(SinglePost);

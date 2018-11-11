@@ -6,6 +6,7 @@ import {
   View,
 } from 'react-native'
 import LinearGradient from 'react-native-linear-gradient'
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import { Header } from '../template'
 import config from '../config'
 
@@ -33,15 +34,15 @@ class MainTemplate extends Component {
       return (
         <LinearGradient colors={[config.colors.purple, config.colors.pink]} style={styles.background}>
           <View style={styles.header}>
-            <Header
-              title={this.props.title}
-            />
+            <Header title={this.props.title} />
           </View>
-          <ScrollView contentContainerStyle={styles.container}>
-            <View style={styles.content}>
-              {this.props.children}
-            </View>
-          </ScrollView>
+          <KeyboardAwareScrollView>
+            <ScrollView>
+                <View style={styles.content}>
+                  {this.props.children}
+                </View>
+            </ScrollView>
+          </KeyboardAwareScrollView>
         </LinearGradient>
       );
     }
@@ -49,15 +50,15 @@ class MainTemplate extends Component {
     return (
       <LinearGradient colors={[config.colors.blue, config.colors.yellow]} style={styles.background}>
         <View style={styles.header}>
-          <Header
-            title={this.props.title}
-          />
+          <Header title={this.props.title} />
         </View>
-        <ScrollView contentContainerStyle={styles.container}>
-          <View style={styles.content}>
-            {this.props.children}
-          </View>
-        </ScrollView>
+        <KeyboardAwareScrollView>
+          <ScrollView contentContainerStyle={styles.container}>
+            <View style={styles.content}>
+              {this.props.children}
+            </View>
+          </ScrollView>
+        </KeyboardAwareScrollView>
       </LinearGradient>
     );
   }

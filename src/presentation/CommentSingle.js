@@ -13,6 +13,7 @@ import ActionSheet from 'react-native-actionsheet'
 import SvgUri from 'react-native-svg-uri'
 import config from '../config'
 import moment from 'moment'
+import { connect } from 'react-redux'
 
 // Set locale based on platform
 let locale = 'en_US'
@@ -23,9 +24,11 @@ if (Platform.OS === 'ios') {
 }
 
 class CommentSingle extends Component {
-  constructor() {
-    super()
-    this.state = {}
+  constructor(props) {
+    super(props)
+    this.state = {
+      id: this.props.comment.id
+    }
   }
 
   // Component State Management
@@ -48,9 +51,19 @@ class CommentSingle extends Component {
   }
 
   actionSheetPress = (index) => {
-    // index == 2 -> cancel
-    if (index != 2) {
-      alert(index)
+    switch (index) {
+      case 0:
+        // Reply
+        this.props.focusComment(this.state.id)
+        break
+
+      case 1:
+        // Report
+        break
+
+      case 2:
+        // Cancel
+        break
     }
   }
 
@@ -87,7 +100,6 @@ class CommentSingle extends Component {
             </TouchableOpacity>
             <ActionSheet
               ref={o => this.ActionSheet = o}
-              // title={'Which one do you like ?'}
               options={['Reply', 'Report', 'cancel']}
               cancelButtonIndex={2}
               destructiveButtonIndex={1}
@@ -104,42 +116,6 @@ class CommentSingle extends Component {
 }
 
 const styles = StyleSheet.create({
-  icon: {
-    width: 24,
-    height: 24,
-    tintColor: config.colors.grayLight,
-  },
-
-  rightInfo: {
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-
-  date: {
-    color: config.colors.grayLight,
-    marginRight: 20,
-  },
-
-  name: {
-    color: config.colors.primary,
-  },
-
-  topInfo: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    alignSelf: 'stretch',
-    marginBottom: 2,
-  },
-
-  content: {
-    flexGrow: 1,
-  },
-
-  avatar: {
-    paddingRight: 10,
-  },
-
   commentSingle: {
     flex: 1,
     flexShrink: 1,
@@ -156,7 +132,43 @@ const styles = StyleSheet.create({
     shadowOffset: {width: 1, height: 2},
     shadowOpacity: 0.01,
     shadowRadius: 4,
-  }
+  },
+
+  avatar: {
+    paddingRight: 10,
+  },
+
+  content: {
+    flexGrow: 1,
+  },
+
+  topInfo: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    alignSelf: 'stretch',
+    marginBottom: 2,
+  },
+
+  rightInfo: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+
+  name: {
+    color: config.colors.primary,
+  },
+
+  date: {
+    color: config.colors.grayLight,
+    marginRight: 20,
+  },
+
+  icon: {
+    width: 24,
+    height: 24,
+    tintColor: config.colors.grayLight,
+  },
 })
 
 export default CommentSingle;

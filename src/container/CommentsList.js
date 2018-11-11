@@ -9,8 +9,8 @@ import { CommentSingle } from '../presentation'
 import config from '../config'
 
 class CommentsList extends Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.state = {
       comments: [],
     }
@@ -23,13 +23,19 @@ class CommentsList extends Component {
   }
 
   // Methods
-  _keyExtractor(item, index) {
+  focusComment = (id) => {
+    this.props.focusComment(id)
+  }
+
+  _keyExtractor = (item, index) => {
     return index.toString()
   }
 
-  _renderComment(data) {
-    return <CommentSingle comment={data.item} />
+  _renderComment = (data) => {
+    return <CommentSingle comment={data.item} focusComment={ this.focusComment }/>
   }
+
+
 
   // Render
   render() {
