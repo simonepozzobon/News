@@ -26,7 +26,6 @@ class ItsMonday extends Component {
     return fetch(config.api.path + '/app/monday')
       .then(response => response.json())
       .then(responseJson => {
-        console.log(responseJson)
         this.setState({
           isLoading: false,
           posts: responseJson
