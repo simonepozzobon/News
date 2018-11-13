@@ -20,7 +20,7 @@ class ItsFriday extends Component {
 
   // Component State Management
   componentDidMount() {
-    return fetch('http://shortology.it/api/app/friday')
+    return fetch(config.api.path + '/app/friday')
       .then(response => response.json())
       .then(responseJson => {
         this.setState({

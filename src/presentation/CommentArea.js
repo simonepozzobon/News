@@ -50,7 +50,11 @@ class CommentArea extends Component {
 
       axios.post(config.api.path + '/app/comments/create', data)
         .then(response => {
-          console.log(response)
+          // clear comment area
+          this.input.clear()
+          
+          // aggiorna i commenti nel componenst SinglePost
+          this.props.updateComments(response.data)
         })
         .catch(err => {
           console.log(err)

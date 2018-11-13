@@ -17,7 +17,6 @@ class CommentsList extends Component {
   }
 
   // Component State Management
-  componentWillMount() {}
   componentDidMount() {
     this.setState({ comments: this.props.comments })
   }
@@ -27,15 +26,13 @@ class CommentsList extends Component {
     this.props.focusComment(id)
   }
 
-  _keyExtractor = (item, index) => {
+  keyExtractor = (item, index) => {
     return index.toString()
   }
 
-  _renderComment = (data) => {
+  renderComment = (data) => {
     return <CommentSingle comment={data.item} focusComment={ this.focusComment }/>
   }
-
-
 
   // Render
   render() {
@@ -44,13 +41,13 @@ class CommentsList extends Component {
 
     // Component
     return (
-      <FlatList
-        data={this.state.comments}
-        keyExtractor={this._keyExtractor}
-        renderItem={this._renderComment}
-        scrollEnabled={false}
-        style={{ flex: 1, alignSelf: 'stretch', marginHorizontal: 8 }}
-      />
+        <FlatList
+          data={this.props.comments}
+          keyExtractor={this.keyExtractor}
+          renderItem={this.renderComment}
+          extraData={this.props.comments}
+          style={{ flex: 1, alignSelf: 'stretch', marginHorizontal: 8 }}
+        />
     )
   }
 }

@@ -29,10 +29,10 @@ class PostInteractionNav extends Component {
 
   // Methods
   likePost = () => {
+    console.log('path per api', config.api.path + '/app/' + this.props.id + '/like-it')
     fetch(config.api.path + '/app/' + this.props.id + '/like-it')
       .then(response => response.json())
       .then(responseJson => {
-        console.log(responseJson)
         if (responseJson.success) {
           this.setState({ likeCount: responseJson.counts })
         }

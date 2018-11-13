@@ -30,6 +30,7 @@ class SinglePost extends Component {
     this.state = {
       isLoading: true,
       post: {},
+      comments: [],
       likeCount: 0,
       commentCount: 0,
       screenWidth: Dimensions.get('window').width,
@@ -51,9 +52,12 @@ class SinglePost extends Component {
         this.setState({
           isLoading: false,
           post: responseJson,
+          comments: responseJson.comments,
           likeCount: responseJson.likes ? responseJson.likes.count : 0,
           commentCount: commentCount
         })
+
+        console.log(this.CommentList)
       })
       .catch((error) => {
         console.log(error)
@@ -67,6 +71,13 @@ class SinglePost extends Component {
     } else {
       this.CommentArea.focus()
     }
+  }
+
+  updateComments = (newComment) => {
+    this.setState({
+      commentCount: this.state.commentCount + 1,
+      comments: [...this.state.comments, newComment]
+    })
   }
 
   // Render
@@ -121,11 +132,13 @@ class SinglePost extends Component {
           focusComment={this.focusComment}
         />
         <CommentsList
-          comments={this.state.post.comments}
+          comments={this.state.comments}
           focusComment={this.focusComment}
+          ref={x => this.CommentList = x}
         />
         <CommentArea
           id={this.state.post.id}
+          updateComments={this.updateComments}
           ref={x => this.CommentArea = x}
         />
 

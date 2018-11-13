@@ -23,9 +23,10 @@ class ItsMonday extends Component {
   }
 
   componentDidMount() {
-    return fetch('http://shortology.it/api/app/monday')
+    return fetch(config.api.path + '/app/monday')
       .then(response => response.json())
       .then(responseJson => {
+        console.log(responseJson)
         this.setState({
           isLoading: false,
           posts: responseJson

@@ -81,7 +81,7 @@ class CommentSingle extends Component {
           <SvgUri
             width="50"
             height="50"
-            source={{ uri: this.props.comment.author.avatar.url }}
+            source={{ uri: this.props.comment.author.avatar_url }}
           />
         </View>
         <View style={styles.content}>
@@ -117,8 +117,6 @@ class CommentSingle extends Component {
 
 const styles = StyleSheet.create({
   commentSingle: {
-    flex: 1,
-    flexShrink: 1,
     flexDirection: 'row',
     alignSelf: 'stretch',
     borderRadius: 14,
