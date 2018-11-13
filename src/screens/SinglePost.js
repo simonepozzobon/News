@@ -28,7 +28,7 @@ class SinglePost extends Component {
     this.state = {
       isLoading: true,
       post: {},
-      comments: [],
+      comments: [], 
       likeCount: 0,
       commentCount: 0,
       screenWidth: Dimensions.get('window').width,
@@ -39,8 +39,7 @@ class SinglePost extends Component {
   componentWillMount() {}
 
   componentDidMount() {
-    return fetch('http://shortology.it/api/app/single-post/ghost')
-    // return fetch(config.api.path + '/app/single-post/' + this.props.navigation.state.params.slug)
+    return fetch(config.api.path + '/app/single-post/' + this.props.navigation.state.params.slug)
       .then(response => response.json())
       .then(responseJson => {
         console.log(responseJson)
@@ -101,6 +100,7 @@ class SinglePost extends Component {
       <MainTemplate
         color={2}
         title="It's Monday"
+        navigation={this.props.navigation.state.params}
       >
         <PostContent
           post={this.state.post}
@@ -122,7 +122,6 @@ class SinglePost extends Component {
           updateComments={this.updateComments}
           ref={x => this.CommentArea = x}
         />
-
       </MainTemplate>
     );
   }

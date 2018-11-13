@@ -29,6 +29,8 @@ class PostsGrid extends Component {
     super()
     this.state = {
       posts: [],
+      next: '',
+      prev: '',
     }
   }
 
@@ -41,12 +43,20 @@ class PostsGrid extends Component {
   }
 
   // Methods
-  _keyExtractor(item, index) {
+  keyExtractor(item, index) {
     return item.id.toString()
   }
 
-  _renderPost(data) {
-    return <PostItem post={data.item} />
+  renderPost(data, index) {
+    return (
+      <PostItem
+        post={data.item}
+        idx={index}
+        length={this.state.post.length}
+        next={this.state.next}
+        prev={this.state.prev}
+      />
+    )
   }
 
   // Render
@@ -58,8 +68,8 @@ class PostsGrid extends Component {
     return (
         <FlatList
           data={formatData(this.state.posts)}
-          keyExtractor={this._keyExtractor}
-          renderItem={this._renderPost}
+          keyExtractor={this.keyExtractor}
+          renderItem={this.renderPost}
           numColumns={config.gridColumns}
           style={{ flex: 1, alignSelf: 'stretch', marginHorizontal: 4}}
         />

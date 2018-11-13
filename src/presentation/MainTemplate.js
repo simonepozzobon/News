@@ -10,7 +10,6 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import { Header } from '../template'
 import config from '../config'
 
-
 class MainTemplate extends Component {
   constructor() {
     super()
@@ -22,7 +21,13 @@ class MainTemplate extends Component {
   }
 
   // Methods
-  method() {}
+  navigation = () => {
+    return (
+      <View style={styles.footer}>
+        <Text>Navigazione</Text>
+      </View>
+    )
+  }
 
   // Render
   render() {
@@ -43,6 +48,7 @@ class MainTemplate extends Component {
                 </View>
             </ScrollView>
           </KeyboardAwareScrollView>
+          {this.navigation}
         </LinearGradient>
       );
     }
@@ -80,6 +86,14 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.01,
     shadowRadius: 1,
     zIndex: 2,
+  },
+
+  footer: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    zIndex: 10,
+    alignSelf: 'stretch',
+    height: 75,
   }
 })
 

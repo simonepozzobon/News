@@ -1,10 +1,10 @@
 export default {
   // api
   api: {
-    path: 'http://shortologynew.test:89/api'
+    path: 'http://shortology.it/api'
   },
 
-  website: 'http://shortologynew.test:89/',
+  website: 'http://shortology.it/',
 
 
   // Images

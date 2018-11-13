@@ -24,7 +24,11 @@ class PostItem extends Component {
   goTo() {
     if (this.props.post.slug && this.props.post.slug.slug) {
       this.props.navigation.navigate('singlePost', {
-        slug: this.props.post.slug.slug
+        slug: this.props.post.slug.slug,
+        next: this.props.next,
+        prev: this.props.prev,
+        idx: this.props.idx,
+        count: this.props.length
       })
     } else {
       console.log('il post non ha uno slug')
