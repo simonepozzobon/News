@@ -27,7 +27,7 @@ class PostContent extends Component {
   // Render
   render() {
     // Dynamic styles
-    const imgSize = Math.floor(this.state.screenWidth * 0.96)
+    const imgSize = Math.floor(this.state.screenWidth - 16)
     const compStyles = StyleSheet.create({
       postImage: {
         width: imgSize,
@@ -74,7 +74,7 @@ class PostContent extends Component {
 const styles = StyleSheet.create({
   contentContainer: {
     alignItems: 'center',
-    marginHorizontal: 4,
+    marginHorizontal: 8,
     backgroundColor: 'white',
     shadowColor: config.colors.black,
     shadowOffset: {width: 2, height: 4},

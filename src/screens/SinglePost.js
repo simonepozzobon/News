@@ -12,11 +12,12 @@ import {
 } from 'react-native'
 
 import {
-  CommentArea,
-  MainTemplate,
-  PostContent,
-  PostInteractionNav
+  MainTemplate
 } from '../presentation'
+
+import {
+  PostContainer
+} from '../Post'
 
 import Carousel from 'react-native-snap-carousel'
 import { withNavigation } from 'react-navigation'
@@ -28,16 +29,8 @@ class SinglePost extends Component {
     super(props)
     this.state = {
       isLoading: true,
-      post: {},
-      comments: [],
-      likeCount: 0,
-      commentCount: 0,
+      posts: [],
       screenWidth: Dimensions.get('window').width,
-      dummies: [
-        { id: 1, content: '1' },
-        { id: 2, content: '1' },
-        { id: 3, content: '1' },
-      ]
     }
   }
 
@@ -49,14 +42,9 @@ class SinglePost extends Component {
       .then(response => response.json())
       .then(responseJson => {
         console.log(responseJson)
-        let commentCount = responseJson.comments ? responseJson.comments.length : 0
-
         this.setState({
           isLoading: false,
-          post: responseJson,
-          comments: responseJson.comments,
-          likeCount: responseJson.likes ? responseJson.likes.count : 0,
-          commentCount: commentCount
+          posts: responseJson.posts,
         })
       })
       .catch((error) => {
@@ -65,45 +53,12 @@ class SinglePost extends Component {
   }
 
   // Methods
-  focusComment = (id = null) => {
-    if (id) {
-      this.CommentArea.focus(id)
-    } else {
-      this.CommentArea.focus()
-    }
-  }
-
-  updateComments = (newComment) => {
-    this.setState({
-      commentCount: this.state.commentCount + 1,
-      comments: [...this.state.comments, newComment]
-    })
-  }
 
   renderItem = (data, index) => {
     return (
-      <View style={{flex: 1}}>
-        <PostContent
-          post={this.state.post}
-        />
-        <PostInteractionNav
-          id={this.state.post.id}
-          title={this.state.post.title}
-          slug={this.state.post.slug.slug}
-          likeCount={this.state.likeCount}
-          commentCount={this.state.commentCount}
-          focusComment={this.focusComment}
-        />
-        <CommentsList
-          comments={this.state.comments}
-          focusComment={this.focusComment}
-        />
-        <CommentArea
-          id={this.state.post.id}
-          updateComments={this.updateComments}
-          ref={x => this.CommentArea = x}
-        />
-      </View>
+      <PostContainer
+        post={data.item}
+      />
     )
   }
 
@@ -133,14 +88,15 @@ class SinglePost extends Component {
       <MainTemplate
         color={2}
         title="It's Monday"
-        navigation={this.props.navigation.state.params}
+        removeScrollView={true}
       >
         <Carousel
-          ref={x => this.carousel = x}
-          data={this.state.dummies}
+          ref={ref => this.Carousel = ref}
+          data={this.state.posts}
           renderItem={this.renderItem}
           sliderWidth={this.state.screenWidth}
           itemWidth={this.state.screenWidth}
+          removeClippedSubviews={true}
         />
       </MainTemplate>
     );

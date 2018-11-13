@@ -21,18 +21,29 @@ class MainTemplate extends Component {
   }
 
   // Methods
-  navigation = () => {
-    return (
-      <View style={styles.footer}>
-        <Text>Navigazione</Text>
-      </View>
-    )
-  }
 
   // Render
   render() {
     // Dynamic styles
     const compStyles = StyleSheet.create({})
+
+    let content = (
+      <KeyboardAwareScrollView>
+        <ScrollView>
+            <View style={styles.content}>
+              {this.props.children}
+            </View>
+        </ScrollView>
+      </KeyboardAwareScrollView>
+    )
+
+    if(this.props.removeScrollView) {
+      content = (
+        <View style={styles.content}>
+          {this.props.children}
+        </View>
+      )
+    }
 
     // Component
     if (this.props.color == 2) {
@@ -41,14 +52,7 @@ class MainTemplate extends Component {
           <View style={styles.header}>
             <Header title={this.props.title} />
           </View>
-          <KeyboardAwareScrollView>
-            <ScrollView>
-                <View style={styles.content}>
-                  {this.props.children}
-                </View>
-            </ScrollView>
-          </KeyboardAwareScrollView>
-          {this.navigation}
+          {content}
         </LinearGradient>
       );
     }
