@@ -46,7 +46,7 @@ const MainStack = createSwitchNavigator({
     screen: Register,
   },
 }, {
-  initialRouteName: 'itsFriday'
+  initialRouteName: 'singlePost'
 })
 
 class ShortologyNews extends Component {

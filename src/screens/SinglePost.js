@@ -39,8 +39,8 @@ class SinglePost extends Component {
   componentWillMount() {}
 
   componentDidMount() {
-    // return fetch('http://shortology.it/api/app/single-post/'+this.props.navigation.state.params.slug)
-    return fetch(config.api.path + '/app/single-post/' + this.props.navigation.state.params.slug)
+    return fetch('http://shortology.it/api/app/single-post/ghost')
+    // return fetch(config.api.path + '/app/single-post/' + this.props.navigation.state.params.slug)
       .then(response => response.json())
       .then(responseJson => {
         console.log(responseJson)

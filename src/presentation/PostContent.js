@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
 import {
   Dimensions,
+  Image,
   StyleSheet,
   Text,
+  TouchableOpacity,
   View,
 } from 'react-native'
 import Video from 'react-native-video'
@@ -38,16 +40,18 @@ class PostContent extends Component {
     if (this.props.post.isvideo) {
       // Contenuto Video
       content = (
-        <Video
-          source={{ uri: this.props.post.video }}
-          style={compStyles.postImage}
-          controls={true}
-          fullscreen={false}
-          ignoreSilentSwitch="obey"
-          paused={true}
-          resizeMode="contain"
-          poster={this.props.post.full_img}
-        />
+        <View>
+          <Video
+            source={{ uri: this.props.post.video }}
+            style={compStyles.postImage}
+            controls={true}
+            fullscreen={false}
+            ignoreSilentSwitch="obey"
+            paused={true}
+            resizeMode="contain"
+            // poster={this.props.post.full_img}
+          />
+        </View>
       )
     } else {
       // Contenuto Immagine

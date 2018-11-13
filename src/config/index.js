@@ -27,6 +27,7 @@ export default {
     share: require('../../assets/commons/share.png'),
     comment: require('../../assets/commons/comment.png'),
     horizontalDots: require('../../assets/commons/horizontal-dots.png'),
+    play: require('../../assets/commons/play.png'),
   },
 
   // Colors
