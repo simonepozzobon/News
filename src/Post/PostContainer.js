@@ -34,8 +34,6 @@ class PostContainer extends Component {
       commentCount: props.post.comments ? props.post.comments.length : 0,
       screenWidth: Dimensions.get('window').width
     }
-
-    console.log(props)
   }
 
   // Component State Management

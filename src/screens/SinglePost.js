@@ -30,6 +30,7 @@ class SinglePost extends Component {
     this.state = {
       isLoading: true,
       posts: [],
+      firstItem: 0,
       screenWidth: Dimensions.get('window').width,
     }
   }
@@ -45,6 +46,7 @@ class SinglePost extends Component {
         this.setState({
           isLoading: false,
           posts: responseJson.posts,
+          firstItem: responseJson.idx
         })
       })
       .catch((error) => {
@@ -93,6 +95,7 @@ class SinglePost extends Component {
         <Carousel
           ref={ref => this.Carousel = ref}
           data={this.state.posts}
+          firstItem={this.state.firstItem}
           renderItem={this.renderItem}
           sliderWidth={this.state.screenWidth}
           itemWidth={this.state.screenWidth}
