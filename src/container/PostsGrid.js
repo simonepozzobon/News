@@ -51,10 +51,6 @@ class PostsGrid extends Component {
     return (
       <PostItem
         post={data.item}
-        idx={index}
-        length={this.state.post.length}
-        next={this.state.next}
-        prev={this.state.prev}
       />
     )
   }
