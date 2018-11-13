@@ -18,6 +18,7 @@ import {
   PostInteractionNav
 } from '../presentation'
 
+import Carousel from 'react-native-snap-carousel'
 import { withNavigation } from 'react-navigation'
 import { CommentsList } from '../container'
 import config from '../config'
@@ -28,10 +29,15 @@ class SinglePost extends Component {
     this.state = {
       isLoading: true,
       post: {},
-      comments: [], 
+      comments: [],
       likeCount: 0,
       commentCount: 0,
       screenWidth: Dimensions.get('window').width,
+      dummies: [
+        { id: 1, content: '1' },
+        { id: 2, content: '1' },
+        { id: 3, content: '1' },
+      ]
     }
   }
 
@@ -74,6 +80,33 @@ class SinglePost extends Component {
     })
   }
 
+  renderItem = (data, index) => {
+    return (
+      <View style={{flex: 1}}>
+        <PostContent
+          post={this.state.post}
+        />
+        <PostInteractionNav
+          id={this.state.post.id}
+          title={this.state.post.title}
+          slug={this.state.post.slug.slug}
+          likeCount={this.state.likeCount}
+          commentCount={this.state.commentCount}
+          focusComment={this.focusComment}
+        />
+        <CommentsList
+          comments={this.state.comments}
+          focusComment={this.focusComment}
+        />
+        <CommentArea
+          id={this.state.post.id}
+          updateComments={this.updateComments}
+          ref={x => this.CommentArea = x}
+        />
+      </View>
+    )
+  }
+
   // Render
   render() {
     // Dynamic styles
@@ -102,25 +135,12 @@ class SinglePost extends Component {
         title="It's Monday"
         navigation={this.props.navigation.state.params}
       >
-        <PostContent
-          post={this.state.post}
-        />
-        <PostInteractionNav
-          id={this.state.post.id}
-          title={this.state.post.title}
-          slug={this.state.post.slug.slug}
-          likeCount={this.state.likeCount}
-          commentCount={this.state.commentCount}
-          focusComment={this.focusComment}
-        />
-        <CommentsList
-          comments={this.state.comments}
-          focusComment={this.focusComment}
-        />
-        <CommentArea
-          id={this.state.post.id}
-          updateComments={this.updateComments}
-          ref={x => this.CommentArea = x}
+        <Carousel
+          ref={x => this.carousel = x}
+          data={this.state.dummies}
+          renderItem={this.renderItem}
+          sliderWidth={this.state.screenWidth}
+          itemWidth={this.state.screenWidth}
         />
       </MainTemplate>
     );
